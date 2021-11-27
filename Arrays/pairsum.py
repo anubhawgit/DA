@@ -3,25 +3,18 @@ from nose.tools import assert_equal
 
 def pair_sum(arr,k):
     
-    i = 0
-    j = i + 1
-    pair_count = 0
+    if len(arr) < 2:
+        return
+    seen = set()
+    output = set()
+    for num in arr:
+        target = k-num
+        if target not in seen:
+            seen.add(num)
+        else:
+            output.add((min(num,target),max(num,target)))
     
-    while i < len(arr) :
-        outerval = arr[i]
-        innerval = arr[j]
-        if (innerval+outerval) == k:
-            i += 2
-            j += 2
-            pair_count += 1
-        elif j < len(arr):
-            j += 1
-        elif j == len(arr):
-            i += 1
-            j = i + 1
-        print("outerval - ", outerval, "innerval - ", innerval)
-        # print(j)
-    return pair_count
+    return len(output)
     pass
 
 
